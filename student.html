@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SmartStudent | Management System</title>
+    <!-- Font Awesome 6 (Free CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Poppins + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f7ff 0%, #e9eef5 100%);
+            font-family: 'Inter', sans-serif;
+            color: #1a2c3e;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        /* main container */
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1E3C72, #2A5298);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .logo p {
+            font-size: 0.85rem;
+            color: #4a627a;
+            font-weight: 500;
+        }
+        .stats-badge {
+            background: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+            display: flex;
+            gap: 1rem;
+            font-weight: 600;
+        }
+        .stats-badge span {
+            color: #2c5f8a;
+            font-size: 1.2rem;
+            margin-right: 6px;
+        }
+
+        /* layout grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 1.8rem;
+        }
+
+        /* cards common */
+        .card {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(0px);
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0,0,0,0.02);
+            padding: 1.6rem 1.8rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .card:hover {
+            box-shadow: 0 24px 42px -16px rgba(0, 32, 64, 0.12);
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #2c7da0;
+            padding-left: 1rem;
+            color: #1e3b4f;
+        }
+        .card-title i {
+            color: #2c7da0;
+            font-size: 1.3rem;
+        }
+
+        /* form */
+        .form-group {
+            margin-bottom: 1.1rem;
+        }
+        label {
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #4f6f8f;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 16px;
+            border: 1.5px solid #e2e8f0;
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2c7da0;
+            box-shadow: 0 0 0 3px rgba(44,125,160,0.2);
+        }
+        .btn {
+            border: none;
+            background: #1f5e7e;
+            color: white;
+            padding: 0.75rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: #1f5e7e;
+            box-shadow: 0 4px 8px rgba(31,94,126,0.2);
+        }
+        .btn-primary:hover {
+            background: #124257;
+            transform: translateY(-2px);
+        }
+        .btn-danger {
+            background: #c44536;
+        }
+        .btn-danger:hover {
+            background: #a13325;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #cbdde9;
+            color: #2c5a77;
+        }
+        .btn-outline:hover {
+            background: #eef4fa;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        /* table */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 20px;
+        }
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .student-table th {
+            text-align: left;
+            padding: 0.9rem 0.5rem 0.9rem 0;
+            font-weight: 600;
+            color: #2c5a77;
+            border-bottom: 2px solid #e2edf2;
+        }
+        .student-table td {
+            padding: 0.9rem 0.5rem 0.9rem 0;
+            border-bottom: 1px solid #ecf3f8;
+            vertical-align: middle;
+        }
+        .student-table tr:last-child td {
+            border-bottom: none;
+        }
+        .badge-grade {
+            background: #eef2fa;
+            padding: 0.2rem 0.7rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: #1f5e7e;
+            display: inline-block;
+        }
+        .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-right: 0.5rem;
+            transition: 0.1s;
+        }
+        .edit-btn { color: #2c7da0; }
+        .delete-btn { color: #c44536; }
+        .edit-btn:hover { color: #0f4b66; transform: scale(1.1);}
+        .delete-btn:hover { color: #942818; transform: scale(1.1);}
+        .empty-row td {
+            text-align: center;
+            padding: 2rem;
+            color: #7d9bb5;
+            font-style: italic;
+        }
+
+        /* search / filter */
+        .search-bar {
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .search-bar input {
+            flex: 2;
+            min-width: 150px;
+            margin-bottom: 0;
+        }
+        .search-bar select {
+            flex: 1;
+            min-width: 110px;
+            margin-bottom: 0;
+        }
+        .reset-filter {
+            background: #eef2fa;
+            color: #2c5a77;
+            font-size: 0.8rem;
+        }
+
+        /* responsive */
+        @media (max-width: 880px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            body {
+                padding: 1.2rem;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+        }
+
+        footer {
+            margin-top: 2.2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6082a0;
+            border-top: 1px solid #d4e2ec;
+            padding-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <div class="header">
+        <div class="logo">
+            <h1><i class="fas fa-graduation-cap" style="color:#2c7da0;"></i> EduManage</h1>
+            <p>Complete student record system</p>
+        </div>
+        <div class="stats-badge">
+            <div><i class="fas fa-users"></i> <span id="totalCount">0</span> Students</div>
+            <div><i class="fas fa-chart-line"></i> Avg Grade: <span id="avgGrade">0.0</span>%</div>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- LEFT: Add / Edit Student Form -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-user-plus"></i> 
+                <span id="formTitle">Add New Student</span>
+            </div>
+            <form id="studentForm">
+                <input type="hidden" id="editId" value="">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="studentName" placeholder="e.g., Pankaj kevat" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="studentEmail" placeholder="student@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-calendar-alt"></i> Course / Class</label>
+                    <input type="text" id="studentCourse" placeholder="B.Tech CSE,MCA, MBA, 12th Science" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-percent"></i> Grade (%)</label>
+                    <input type="number" id="studentGrade" placeholder="0 - 100" step="any" min="0" max="100" required>
+                </div>
+                <div class="action-buttons">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Student</button>
+                    <button type="button" id="cancelEditBtn" class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- RIGHT: Student List + Search -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-list-ul"></i> Student Directory
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="🔍 Search by name, email, course..." autocomplete="off">
+                <select id="filterGrade">
+                    <option value="all">All Grades</option>
+                    <option value="90">90%+ (Excellent)</option>
+                    <option value="75">75% - 89%</option>
+                    <option value="60">60% - 74%</option>
+                    <option value="below">Below 60%</option>
+                </select>
+                <button id="resetFiltersBtn" class="btn reset-filter"><i class="fas fa-undo-alt"></i> Reset</button>
+            </div>
+            <div class="table-wrapper">
+                <table class="student-table" id="studentTable">
+                    <thead>
+                        <tr><th>Name</th><th>Email</th><th>Course</th><th>Grade</th><th style="width:80px">Actions</th></tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr class="empty-row"><td colspan="5">No students added yet. Fill the form →</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <i class="fas fa-chalkboard-user"></i> Smart Student Management | Add, Edit, Delete, Filter & Track Performance
+    </footer>
+</div>
+
+<script>
+    // ---------- STUDENT STORAGE ----------
+    let students = [];
+    let nextId = 1;
+
+    // For edit tracking
+    let currentEditId = null;
+
+    // DOM elements
+    const studentForm = document.getElementById('studentForm');
+    const nameInput = document.getElementById('studentName');
+    const emailInput = document.getElementById('studentEmail');
+    const courseInput = document.getElementById('studentCourse');
+    const gradeInput = document.getElementById('studentGrade');
+    const editIdHidden = document.getElementById('editId');
+    const formTitleSpan = document.getElementById('formTitle');
+    const cancelBtn = document.getElementById('cancelEditBtn');
+    const tableBody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('searchInput');
+    const filterGradeSelect = document.getElementById('filterGrade');
+    const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+    const totalCountSpan = document.getElementById('totalCount');
+    const avgGradeSpan = document.getElementById('avgGrade');
+
+    // Helper: Load from localStorage
+    function loadFromStorage() {
+        const stored = localStorage.getItem('studentManagementSystem');
+        if(stored) {
+            try {
+                const data = JSON.parse(stored);
+                students = data.students || [];
+                nextId = data.nextId || (students.length > 0 ? Math.max(...students.map(s => s.id), 0) + 1 : 1);
+            } catch(e) { console.warn(e); }
+        }
+        if(students.length === 0) {
+            // Seed sample data for smooth demonstration
+            students = [
+                { id: 1, name: "Pankaj Kevat", email: "pankajkevat28@gmail.com", course: "MCA", grade: 82.5 },
+                { id: 2, name: "Rahul kevat", email: "rahulkevat21n@example.com", course: "MSW", grade: 78.3 },
+                { id: 3, name: "Ishita Verma", email: "ishita.v@example.com", course: "12th Science", grade: 88.0 },
+                { id: 4, name: "Kabir Singh", email: "kabir.s@example.com", course: "B.Tech AI", grade: 64.2 }
+            ];
+            nextId = 5;
+        }
+        renderTableAndStats();
+    }
+
+    // save to localStorage
+    function saveToStorage() {
+        const data = {
+            students: students,
+            nextId: nextId
+        };
+        localStorage.setItem('studentManagementSystem', JSON.stringify(data));
+    }
+
+    // Helper functions: add, update, delete
+    function addStudent(studentData) {
+        const newStudent = {
+            id: nextId,
+            name: studentData.name.trim(),
+            email: studentData.email.trim(),
+            course: studentData.course.trim(),
+            grade: parseFloat(studentData.grade)
+        };
+        students.push(newStudent);
+        nextId++;
+        saveToStorage();
+        renderTableAndStats();
+    }
+
+    function updateStudent(id, updatedData) {
+        const index = students.findIndex(s => s.id === id);
+        if(index !== -1) {
+            students[index] = {
+                ...students[index],
+                name: updatedData.name.trim(),
+                email: updatedData.email.trim(),
+                course: updatedData.course.trim(),
+                grade: parseFloat(updatedData.grade)
+            };
+            saveToStorage();
+            renderTableAndStats();
+        }
+    }
+
+    function deleteStudent(id) {
+        students = students.filter(s => s.id !== id);
+        saveToStorage();
+        // if we were editing this student, reset the form
+        if(currentEditId === id) {
+            resetFormToAddMode();
+        }
+        renderTableAndStats();
+    }
+
+    // Filters + search logic
+    function getFilteredStudents() {
+        let filtered = [...students];
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        const gradeFilter = filterGradeSelect.value;
+
+        if(searchTerm !== "") {
+            filtered = filtered.filter(s => 
+                s.name.toLowerCase().includes(searchTerm) || 
+                s.email.toLowerCase().includes(searchTerm) || 
+                s.course.toLowerCase().includes(searchTerm)
+            );
+        }
+
+        if(gradeFilter !== "all") {
+            if(gradeFilter === "90") {
+                filtered = filtered.filter(s => s.grade >= 90);
+            } else if(gradeFilter === "75") {
+                filtered = filtered.filter(s => s.grade >= 75 && s.grade <= 89);
+            } else if(gradeFilter === "60") {
+                filtered = filtered.filter(s => s.grade >= 60 && s.grade <= 74);
+            } else if(gradeFilter === "below") {
+                filtered = filtered.filter(s => s.grade < 60);
+            }
+        }
+        return filtered;
+    }
+
+    // Update stats after any change
+    function updateStats() {
+        const total = students.length;
+        let avg = 0;
+        if(total > 0) {
+            const sum = students.reduce((acc, s) => acc + s.grade, 0);
+            avg = sum / total;
+        }
+        totalCountSpan.innerText = total;
+        avgGradeSpan.innerText = avg.toFixed(1);
+    }
+
+    // render table based on filter/search
+    function renderTable() {
+        const filtered = getFilteredStudents();
+        if(filtered.length === 0) {
+            tableBody.innerHTML = `<tr class="empty-row"><td colspan="5">✨ No matching students. Add or reset filters.</td></tr>`;
+            return;
+        }
+
+        let html = '';
+        filtered.forEach(student => {
+            const gradeValue = student.grade;
+            let gradeClass = '';
+            let gradeDisplay = gradeValue.toFixed(1) + '%';
+            if(gradeValue >= 85) gradeDisplay = '🌟 ' + gradeDisplay;
+            else if(gradeValue < 50) gradeDisplay = '⚠️ ' + gradeDisplay;
+            html += `
+                <tr>
+                    <td style="font-weight:500;">${escapeHtml(student.name)}</td>
+                    <td>${escapeHtml(student.email)}</td>
+                    <td>${escapeHtml(student.course)}</td>
+                    <td><span class="badge-grade">${gradeDisplay}</span></td>
+                    <td>
+                        <button class="edit-btn" data-id="${student.id}" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" data-id="${student.id}" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            `;
+        });
+        tableBody.innerHTML = html;
+
+        // Attach event listeners to dynamic buttons
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                startEditStudent(id);
+            });
+        });
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                if(confirm('Are you sure you want to delete this student record?')) {
+                    deleteStudent(id);
+                }
+            });
+        });
+    }
+
+    // escape html for safety
+    function escapeHtml(str) {
+        if(!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if(m === '&') return '&amp;';
+            if(m === '<') return '&lt;';
+            if(m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    // renderTable + stats together
+    function renderTableAndStats() {
+        renderTable();
+        updateStats();
+    }
+
+    // Edit mode
+    function startEditStudent(id) {
+        const student = students.find(s => s.id === id);
+        if(!student) return;
+        currentEditId = id;
+        editIdHidden.value = id;
+        nameInput.value = student.name;
+        emailInput.value = student.email;
+        courseInput.value = student.course;
+        gradeInput.value = student.grade;
+        formTitleSpan.innerHTML = '<i class="fas fa-pen-alt"></i> Edit Student';
+        cancelBtn.style.display = 'inline-flex';
+        // Scroll gently to form
+        document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function resetFormToAddMode() {
+        currentEditId = null;
+        editIdHidden.value = '';
+        studentForm.reset();
+        formTitleSpan.innerHTML = '<i class="fas fa-user-plus"></i> Add New Student';
+        cancelBtn.style.display = 'inline-flex';  // still visible, but we keep it always shown, but typical UX
+        // clear any potential leftover error style
+        nameInput.classList.remove('error-border');
+    }
+
+    // Submit handler (Add or Update)
+    function handleFormSubmit(e) {
+        e.preventDefault();
+
+        // validations
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const course = courseInput.value.trim();
+        const gradeRaw = gradeInput.value.trim();
+
+        if(!name) { alert("Please enter student name"); nameInput.focus(); return; }
+        if(!email) { alert("Email is required"); emailInput.focus(); return; }
+        if(!email.includes('@') || !email.includes('.')) { alert("Please enter a valid email address"); emailInput.focus(); return; }
+        if(!course) { alert("Course / Class is required"); courseInput.focus(); return; }
+        if(gradeRaw === "") { alert("Grade percentage is required"); gradeInput.focus(); return; }
+        let gradeNum = parseFloat(gradeRaw);
+        if(isNaN(gradeNum) || gradeNum < 0 || gradeNum > 100) {
+            alert("Grade must be a number between 0 and 100");
+            gradeInput.focus();
+            return;
+        }
+
+        const studentData = {
+            name: name,
+            email: email,
+            course: course,
+            grade: gradeNum
+        };
+
+        const editIdVal = editIdHidden.value;
+        if(editIdVal && editIdVal !== "") {
+            // update mode
+            updateStudent(parseInt(editIdVal), studentData);
+            resetFormToAddMode();
+        } else {
+            // add new
+            // duplicate email check?
+            const emailExists = students.some(s => s.email.toLowerCase() === email.toLowerCase());
+            if(emailExists) {
+                alert("A student with this email already exists! Use a different email.");
+                return;
+            }
+            addStudent(studentData);
+            studentForm.reset();
+        }
+        renderTableAndStats();
+    }
+
+    // reset filters (search + grade filter)
+    function resetFilters() {
+        searchInput.value = '';
+        filterGradeSelect.value = 'all';
+        renderTableAndStats();
+    }
+
+    // search & filter event listeners
+    function attachFilterEvents() {
+        searchInput.addEventListener('input', () => renderTableAndStats());
+        filterGradeSelect.addEventListener('change', () => renderTableAndStats());
+        resetFiltersBtn.addEventListener('click', resetFilters);
+    }
+
+    // cancel edit
+    function setupCancelEdit() {
+        cancelBtn.addEventListener('click', () => {
+            resetFormToAddMode();
+            renderTableAndStats(); // just to refresh table if needed but edit cancel doesn't affect data ok
+        });
+    }
+
+    // initial load & sync
+    function init() {
+        loadFromStorage();
+        attachFilterEvents();
+        setupCancelEdit();
+        studentForm.addEventListener('submit', handleFormSubmit);
+        // Make cancel visible always
+        cancelBtn.style.display = 'inline-flex';
+        // if accidentally no students but seed loaded already
+        renderTableAndStats();
+    }
+
+    // Edge: also if storage not updated, render again
+    window.addEventListener('storage', (e) => {
+        if(e.key === 'studentManagementSystem') {
+            loadFromStorage();
+            renderTableAndStats();
+            if(currentEditId) resetFormToAddMode();
+        }
+    });
+
+    init();
+</script>
+</body>
+</html>
