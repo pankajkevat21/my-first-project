@@ -233,3 +233,16 @@ body::before {
     pointer-events: none;
     z-index: -1;
 }
+.login-btn{
+    padding: 12px 28px;
+    border-radius: 30px;
+    background: linear-gradient(45deg,#38bdf8,#0ea5e9);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.login-btn:hover{
+    box-shadow: 0 0 20px rgba(56,189,248,0.8);
+}
