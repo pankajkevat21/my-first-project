@@ -6,108 +6,70 @@
 }
 
 body{
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    min-height: 100vh;
-}
+    height: 100vh;
 
-nav{
-    width: 90%;
-    margin: 20px auto;
-    padding: 18px 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+}
+
+.about{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-box{
+    width: 500px;
+
+    padding: 40px;
+
     background: rgba(255,255,255,0.08);
+
     backdrop-filter: blur(15px);
 
-    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 20px;
 
+    border: 1px solid rgba(255,255,255,0.1);
+
     box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+
+    text-align: center;
 }
 
-.logo h1{
+.about-box h1{
     color: white;
-    font-size: 32px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: 0.3s;
+    font-size: 40px;
+    margin-bottom: 20px;
 }
 
-.logo h1:hover{
-    color: #38bdf8;
-    transform: scale(1.05);
-}
-
-.nav-links{
-    display: flex;
-    list-style: none;
-    gap: 35px;
-}
-
-.nav-links a{
-    position: relative;
-    text-decoration: none;
-    color: white;
+.about-box p{
+    color: #ddd;
     font-size: 18px;
-    font-weight: 500;
-    transition: 0.3s;
+    line-height: 30px;
+    margin-bottom: 30px;
 }
 
-.nav-links a::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    width: 0%;
-    height: 3px;
-    background: #38bdf8;
-    border-radius: 10px;
-    transition: 0.4s;
-}
-
-.nav-links a:hover{
-    color: #38bdf8;
-}
-
-.nav-links a:hover::after{
-    width: 100%;
-}
-
-button{
+.about-box button{
     padding: 12px 28px;
+
     border: none;
     border-radius: 30px;
-    background: linear-gradient(45deg, #38bdf8, #0ea5e9);
+
+    background: linear-gradient(45deg,#38bdf8,#0ea5e9);
+
     color: white;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 18px;
     cursor: pointer;
-    transition: 0.4s;
-    box-shadow: 0 0 15px rgba(56,189,248,0.5);
+
+    transition: 0.3s;
 }
 
-button:hover{
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 0 25px rgba(56,189,248,0.9);
-}
+.about-box button:hover{
+    transform: scale(1.05);
 
-@media(max-width:768px){
-
-    nav{
-        flex-direction: column;
-        gap: 25px;
-        padding: 25px;
-    }
-
-    .nav-links{
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-
-    button{
-        width: 100%;
-    }
+    box-shadow: 0 0 20px rgba(56,189,248,0.8);
 }

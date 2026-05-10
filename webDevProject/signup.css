@@ -4,7 +4,15 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+@media(max-width:768px){
 
+    .contact-box,
+    .login-box,
+    .signup-box,
+    .about-box{
+        width: 90%;
+    }
+}
 body{
     height: 100vh;
 

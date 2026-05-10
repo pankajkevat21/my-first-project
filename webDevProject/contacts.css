@@ -104,4 +104,12 @@ button:hover{
     transform: scale(1.05);
 
     box-shadow: 0 0 20px rgba(56,189,248,0.8);
+}@media(max-width:768px){
+
+    .contact-box,
+    .login-box,
+    .signup-box,
+    .about-box{
+        width: 90%;
+    }
 }
