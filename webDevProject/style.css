@@ -1,0 +1,88 @@
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body{
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    min-height: 100vh;
+}
+
+/* Navbar */
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 5%;
+
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+
+    position: sticky;
+    top: 0;
+}
+
+/* Logo */
+.logo h1{
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Links */
+.nav-links{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover{
+    color: gold;
+}
+
+/* Login Button */
+.login-btn{
+    padding: 12px 28px;
+    border-radius: 30px;
+
+    background: linear-gradient(45deg,#38bdf8,#0ea5e9);
+
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.login-btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(56,189,248,0.8);
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+    nav{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-links{
+        flex-direction: column;
+        text-align: center;
+    }
+}
