@@ -16,7 +16,7 @@ body{
 nav{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items:center;
 
     padding: 15px 5%;
 
@@ -36,6 +36,13 @@ nav{
     font-weight: bold;
 }
 
+/* Right Side */
+.right-nav{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
 /* Links */
 .nav-links{
     display: flex;
@@ -52,6 +59,12 @@ nav{
 
 .nav-links a:hover{
     color: gold;
+}
+
+/* Buttons Container */
+.auth-buttons{
+    display: flex;
+    gap: 15px;
 }
 
 /* Login Button */
@@ -73,6 +86,25 @@ nav{
     box-shadow: 0 0 20px rgba(56,189,248,0.8);
 }
 
+/* Signup Button */
+.signup-btn{
+    padding: 12px 28px;
+    border-radius: 30px;
+
+    background: linear-gradient(45deg,#ff9800,#ff5722);
+
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.signup-btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,152,0,0.8);
+}
+
 /* Mobile */
 @media(max-width:768px){
 
@@ -81,8 +113,16 @@ nav{
         gap: 20px;
     }
 
+    .right-nav{
+        flex-direction: column;
+    }
+
     .nav-links{
         flex-direction: column;
         text-align: center;
+    }
+
+    .auth-buttons{
+        flex-direction: column;
     }
 }
