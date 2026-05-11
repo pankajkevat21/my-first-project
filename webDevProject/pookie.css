@@ -1,0 +1,705 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+/* HIDE SCROLLBAR */
+
+body::-webkit-scrollbar{
+  display:none;
+}
+
+.sidebar::-webkit-scrollbar{
+  display:none;
+}
+
+body,
+.sidebar{
+  scrollbar-width:none;
+}
+
+/* BODY */
+
+body{
+  min-height:100vh;
+
+  background:
+  linear-gradient(135deg,#ff7eb3,#7b61ff);
+
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:80px;
+
+  padding:0 40px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(255,255,255,0.1);
+
+  backdrop-filter:blur(18px);
+
+  border:2px solid rgba(255,255,255,0.25);
+
+  box-shadow:
+  0 8px 32px rgba(0,0,0,0.15),
+  inset 0 0 10px rgba(255,255,255,0.15);
+
+  z-index:9999;
+}
+
+/* LOGO */
+
+.logo{
+  color:white;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+/* NAV LINKS */
+
+.nav-links{
+  display:flex;
+  gap:35px;
+  list-style:none;
+}
+
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  font-size:17px;
+  position:relative;
+}
+
+.nav-links a::after{
+  content:"";
+
+  position:absolute;
+  left:0;
+  bottom:-5px;
+
+  width:0%;
+  height:3px;
+
+  background:white;
+
+  border-radius:20px;
+
+  transition:0.4s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* BUTTON */
+
+.btn{
+  padding:10px 24px;
+
+  border:none;
+  border-radius:40px;
+
+  background:white;
+  color:#ff4f81;
+
+  font-weight:600;
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+  0 8px 20px rgba(255,255,255,0.3);
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+  position:fixed;
+
+  top:80px;
+  left:0;
+
+  width:250px;
+  height:calc(100vh - 80px);
+
+  overflow-y:auto;
+
+  background:rgba(255,255,255,0.12);
+
+  backdrop-filter:blur(20px);
+
+  border-right:1px solid rgba(255,255,255,0.15);
+
+  padding:30px 20px;
+
+  z-index:999;
+}
+
+.sidebar h2{
+  color:white;
+  margin-bottom:25px;
+  font-size:22px;
+}
+
+.sidebar ul{
+  list-style:none;
+}
+
+.sidebar ul li{
+  margin:20px 0;
+}
+
+.sidebar ul li a{
+  display:block;
+
+  text-decoration:none;
+  color:white;
+
+  padding:10px 15px;
+
+  border-radius:12px;
+
+  transition:0.3s;
+}
+
+.sidebar ul li a:hover{
+  background:rgba(51, 0, 255, 0.18);
+
+  transform:translateX(10px);
+}
+
+/* ================= DROPDOWN ================= */
+
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+
+  position:absolute;
+
+  top:100%;
+  left:0;
+
+  width:230px;
+
+  background:rgba(255,255,255,0.12);
+
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,0.2);
+
+  border-radius:15px;
+
+  padding:10px;
+
+  display:none;
+
+  z-index:9999;
+}
+
+.dropdown-menu li{
+  list-style:none;
+  margin:8px 0;
+}
+
+.dropdown-menu li a{
+
+  display:block;
+
+  padding:12px 15px;
+
+  border-radius:10px;
+
+  color:white;
+
+  text-decoration:none;
+
+  transition:0.3s;
+}
+
+.dropdown-menu li a:hover{
+
+  background:rgba(255,255,255,0.18);
+
+  transform:translateX(5px);
+}
+
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero{
+
+  margin-left:250px;
+
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:120px 80px 60px;
+
+  color:white;
+
+  text-align:center;
+}
+
+/* HERO LEFT */
+
+.hero-left{
+  max-width:800px;
+}
+
+.hero-left h1{
+
+  font-size:70px;
+
+  line-height:1.1;
+
+  margin-bottom:25px;
+
+  font-weight:700;
+}
+
+.hero-left h1 span{
+  color:#ffe066;
+}
+
+.hero-left p{
+
+  font-size:20px;
+
+  line-height:1.7;
+
+  opacity:0.95;
+
+  margin-bottom:35px;
+}
+
+/* BUTTONS */
+
+.hero-buttons{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:20px;
+}
+
+.start-btn,
+.learn-btn{
+
+  padding:14px 32px;
+
+  border:none;
+
+  border-radius:50px;
+
+  font-size:16px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.4s;
+}
+
+.start-btn{
+
+  background:white;
+
+  color:#7b61ff;
+}
+
+.start-btn:hover{
+
+  transform:translateY(-6px);
+
+  box-shadow:
+  0 10px 25px rgba(255,255,255,0.3);
+}
+
+.learn-btn{
+
+  background:transparent;
+
+  color:white;
+
+  border:2px solid rgba(255,255,255,0.3);
+}
+
+.learn-btn:hover{
+
+  background:rgba(255,255,255,0.15);
+
+  transform:translateY(-6px);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+
+  margin-left:250px;
+
+  background:rgba(199, 5, 108, 0.1);
+
+  backdrop-filter:blur(18px);
+
+  border-top:1px solid rgba(255,255,255,0.2);
+
+  padding:35px 20px;
+
+  text-align:center;
+
+  color:white;
+
+  box-shadow:
+  0 -5px 20px rgba(0,0,0,0.1);
+}
+
+.footer-content h2{
+
+  font-size:28px;
+
+  margin-bottom:10px;
+}
+
+.footer-content p{
+
+  font-size:16px;
+
+  opacity:0.9;
+
+  margin-bottom:20px;
+}
+
+/* SOCIALS */
+
+.socials{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:18px;
+
+  margin-bottom:20px;
+}
+
+.socials a{
+
+  width:45px;
+  height:45px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  text-decoration:none;
+
+  font-size:22px;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,0.15);
+
+  color:white;
+
+  transition:0.3s;
+}
+
+.socials a:hover{
+
+  transform:translateY(-6px) scale(1.1);
+
+  background:white;
+
+  color:#7b61ff;
+}
+
+.footer-content small{
+
+  opacity:0.8;
+
+  font-size:14px;
+}
+
+/* ================= RESPONSIVE ================= */
+/* ================= TABLET ================= */
+
+@media(max-width:900px){
+
+  .sidebar{
+    width:200px;
+  }
+
+  .hero,
+  footer{
+    margin-left:200px;
+  }
+
+  .hero-left h1{
+    font-size:55px;
+  }
+
+}
+
+/* ================= MOTO G34 / MOBILE ================= */
+@media(max-width:720px){
+
+  /* NAVBAR */
+
+  /* ================= MOBILE NAVBAR ================= */
+
+nav{
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+
+  height:70px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:flex-start;
+
+  gap:18px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  white-space:nowrap;
+
+  padding:0 15px;
+}
+
+/* HIDE SCROLLBAR */
+
+nav::-webkit-scrollbar{
+  display:none;
+}
+
+/* LOGO */
+
+.logo{
+
+  font-size:22px;
+
+  flex-shrink:0;
+}
+
+/* NAV LINKS */
+
+.nav-links{
+
+  display:flex;
+
+  gap:16px;
+
+  flex-shrink:0;
+}
+
+.nav-links a{
+
+  font-size:18px;
+
+  white-space:nowrap;
+}
+
+/* BUTTON */
+
+.btn{
+
+  padding:8px 16px;
+
+  font-size:14px;
+
+  white-space:nowrap;
+
+  flex-shrink:0;
+}
+
+/* ================= MOBILE SIDEBAR ================= */
+
+.sidebar{
+
+  position:fixed;
+
+  top:70px;
+  left:0;
+
+  width:100%;
+
+  height:auto;
+
+  display:flex;
+
+  align-items:center;
+
+  overflow-x:auto;
+  overflow-y:visible;
+
+  white-space:nowrap;
+
+  padding:10px 12px;
+
+  z-index:999;
+
+  border-right:none;
+
+  border-bottom:1px solid rgba(255,255,255,0.15);
+}
+
+/* HIDE TITLE */
+
+.sidebar h2{
+  display:none;
+}
+
+/* HORIZONTAL MENU */
+
+.sidebar ul{
+
+  display:flex;
+
+  gap:12px;
+
+  align-items:center;
+}
+
+/* REMOVE EXTRA SPACE */
+
+.sidebar ul li{
+  margin:0;
+
+  position:relative;
+}
+
+/* LINKS */
+
+.sidebar ul li a{
+
+  padding:10px 14px;
+
+  font-size:16px;
+
+  border-radius:12px;
+
+  white-space:nowrap;
+}
+
+/* ================= MOBILE DROPDOWN ================= */
+
+.dropdown-menu{
+
+  position:absolute;
+
+  top:55px;
+  left:0;
+
+  width:220px;
+
+  display:none;
+
+  flex-direction:column;
+
+  z-index:9999;
+}
+
+/* SHOW DROPDOWN */
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu{
+
+  display:flex;
+}
+
+  /* HERO */
+
+  .hero{
+
+    margin-left:0;
+
+    padding:
+    190px 20px 60px;
+
+    text-align:center;
+  }
+
+  .hero-left h1{
+    font-size:38px;
+
+    line-height:1.2;
+  }
+
+  .hero-left p{
+    font-size:15px;
+  }
+
+  /* BUTTONS */
+
+  .hero-buttons{
+
+    flex-direction:column;
+
+    align-items:center;
+  }
+
+  .start-btn,
+  .learn-btn{
+    width:200px;
+  }
+
+  /* FOOTER */
+
+  footer{
+
+    margin-left:0;
+
+    padding:30px 15px;
+  }
+
+  /* DROPDOWN */
+
+  .dropdown-menu{
+
+    top:55px;
+    left:0;
+
+    width:220px;
+  }
+
+}
