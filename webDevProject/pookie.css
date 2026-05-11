@@ -703,3 +703,11 @@ nav::-webkit-scrollbar{
   }
 
 }
+#changing-text{
+
+  color:#ffe066;
+
+  transition:0.4s;
+
+  display:inline-block;
+}
