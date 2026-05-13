@@ -8,95 +8,95 @@
     <style>
 
         *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
         }
 
         body{
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
 
-            background: linear-gradient(135deg,#0f172a,#1e293b);
+            background:linear-gradient(135deg,#0f172a,#1e293b);
         }
 
         .login-box{
-            width: 350px;
-            padding: 40px;
+            width:350px;
+            padding:40px;
 
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(15px);
+            background:rgba(255,255,255,0.08);
+            backdrop-filter:blur(15px);
 
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border-radius:20px;
+            border:1px solid rgba(255,255,255,0.1);
 
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            box-shadow:0 8px 32px rgba(0,0,0,0.3);
 
-            text-align: center;
+            text-align:center;
         }
 
         .login-box h1{
-            color: white;
-            margin-bottom: 30px;
-            font-size: 35px;
+            color:white;
+            margin-bottom:30px;
+            font-size:35px;
         }
 
         .input-box{
-            margin-bottom: 20px;
+            margin-bottom:20px;
         }
 
         .input-box input{
-            width: 100%;
-            padding: 14px;
+            width:100%;
+            padding:14px;
 
-            border: none;
-            outline: none;
+            border:none;
+            outline:none;
 
-            border-radius: 12px;
+            border-radius:12px;
 
-            background: rgba(255,255,255,0.1);
-            color: white;
-            font-size: 16px;
+            background:rgba(255,255,255,0.1);
+            color:white;
+            font-size:16px;
         }
 
         .input-box input::placeholder{
-            color: #ddd;
+            color:#ddd;
         }
 
         button{
-            width: 100%;
-            padding: 14px;
+            width:100%;
+            padding:14px;
 
-            border: none;
-            border-radius: 30px;
+            border:none;
+            border-radius:30px;
 
-            background: linear-gradient(45deg,#38bdf8,#0ea5e9);
+            background:linear-gradient(45deg,#38bdf8,#0ea5e9);
 
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
+            color:white;
+            font-size:18px;
+            font-weight:bold;
 
-            cursor: pointer;
-            transition: 0.3s;
+            cursor:pointer;
+            transition:0.3s;
         }
 
         button:hover{
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(56,189,248,0.8);
+            transform:scale(1.05);
+            box-shadow:0 0 20px rgba(56,189,248,0.8);
         }
 
         .extra{
-            margin-top: 20px;
-            color: white;
-            font-size: 14px;
+            margin-top:20px;
+            color:white;
+            font-size:14px;
         }
 
         .extra a{
-            color: #38bdf8;
-            text-decoration: none;
+            color:#38bdf8;
+            text-decoration:none;
         }
 
     </style>
@@ -108,18 +108,35 @@
 
         <h1>Login</h1>
 
-        <div class="input-box">
-            <input type="text" placeholder="Enter Username">
-        </div>
+        <form action="login.php" method="POST">
 
-        <div class="input-box">
-            <input type="password" placeholder="Enter Password">
-        </div>
+            <div class="input-box">
+                <input 
+                    type="email" 
+                    name="email"
+                    placeholder="Enter Email"
+                    required
+                >
+            </div>
 
-        <button>Login</button>
+            <div class="input-box">
+                <input 
+                    type="password" 
+                    name="password"
+                    placeholder="Enter Password"
+                    required
+                >
+            </div>
+
+            <button type="submit">Login</button>
+
+        </form>
 
         <div class="extra">
-            <p>Don't have an account? <a href="signup.html">Register</a></p>
+            <p>
+                Don't have an account? 
+                <a href="signup.html">Register</a>
+            </p>
         </div>
 
     </div>
