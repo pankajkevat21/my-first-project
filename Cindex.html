@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>C Language Notes Hindi</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cindex.css">
+   
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>📚 C Language Complete Notes</h1>
+
+        <p>Hindi Notes with Theory + Code + Output</p>
+
+    </div>
+
+    <!-- NAVBAR -->
+
+    <div class="nav">
+
+        <div class="nav-container">
+
+            <button class="nav-btn" onclick="scrollToTopic(1)">Basics</button>
+
+            <button class="nav-btn" onclick="scrollToTopic(2)">Variables</button>
+
+            <button class="nav-btn" onclick="scrollToTopic(3)">Operators</button>
+
+            <button class="nav-btn" onclick="scrollToTopic(4)">Loops</button>
+
+            <button class="nav-btn" onclick="scrollToTopic(5)">Arrays</button>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="container">
+
+        <!-- TOPIC 1 -->
+
+        <div class="topic-card" id="topic-1">
+
+            <span class="topic-number">Chapter 1</span>
+
+            <h2 class="topic-title">C Language Introduction</h2>
+
+            <div class="theory">
+
+                <h3>📖 Theory</h3>
+
+                <p>
+                    C ek powerful programming language hai jo Dennis Ritchie ne banayi thi.
+                    Ye fast aur efficient language hai.
+                    Operating System aur software development me kaafi use hoti hai.
+                </p>
+
+            </div>
+
+            <div class="code-block">
+
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main(){
+
+    printf("Hello World");
+
+    return 0;
+}</code></pre>
+
+            </div>
+
+            <div class="output">
+
+                💻 Output:<br><br>
+
+                Hello World
+
+            </div>
+
+        </div>
+
+        <!-- TOPIC 2 -->
+
+        <div class="topic-card" id="topic-2">
+
+            <span class="topic-number">Chapter 2</span>
+
+            <h2 class="topic-title">Variables & Data Types</h2>
+
+            <div class="theory">
+
+                <h3>📖 Theory</h3>
+
+                <p>
+                    Variables memory location hote hain jahan data store hota hai.
+                    Data type batata hai variable me kis type ka data rahega.
+                </p>
+
+            </div>
+
+            <div class="code-block">
+
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main(){
+
+    int age = 20;
+
+    float marks = 92.5;
+
+    char grade = 'A';
+
+    printf("%d\n",age);
+
+    printf("%.2f\n",marks);
+
+    printf("%c",grade);
+
+    return 0;
+}</code></pre>
+
+            </div>
+
+            <div class="output">
+
+                💻 Output:<br><br>
+
+                20<br>
+                92.50<br>
+                A
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCROLL TOP -->
+
+    <div class="scroll-top" id="scrollTop">
+
+        ↑
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        © 2026 C Language Hindi Notes
+
+    </div>
+
+    <script>
+
+        // Copy Code
+
+        function copyCode(button){
+
+            const code = button.parentElement.querySelector("code").innerText;
+
+            navigator.clipboard.writeText(code);
+
+            button.innerText = "Copied!";
+
+            setTimeout(()=>{
+                button.innerText = "Copy";
+            },2000);
+        }
+
+        // Scroll To Topic
+
+        function scrollToTopic(id){
+
+            document.getElementById("topic-" + id)
+            .scrollIntoView({
+                behavior:"smooth"
+            });
+        }
+
+        // Scroll Top Button
+
+        const scrollBtn = document.getElementById("scrollTop");
+
+        window.addEventListener("scroll",()=>{
+
+            if(window.scrollY > 300){
+
+                scrollBtn.classList.add("show");
+
+            }else{
+
+                scrollBtn.classList.remove("show");
+            }
+        });
+
+        scrollBtn.addEventListener("click",()=>{
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+        });
+
+    </script>
+
+</body>
+</html>
