@@ -1,35 +1,45 @@
 const express = require("express");
-const cors = require("cors");
+
 const mysql = require("mysql2");
+
+const cors = require("cors");
 
 const app = express();
 
+/* MIDDLEWARE */
+
 app.use(cors());
+
 app.use(express.json());
 
-/* MySQL Connection */
+/* MYSQL CONNECTION */
 
 const db = mysql.createConnection({
 
-    host: "localhost",
+    host:"localhost",
 
-    user: "root",
+    user:"root",
 
-    password: "1234",
+    password:"1234",
 
-    database: "signupdb"
+    database:"pankajdb",
+
+    port:3306
 
 });
 
-/* Connect */
+/* CONNECT MYSQL */
 
 db.connect((err)=>{
 
     if(err){
 
+        console.log("Database Error");
+
         console.log(err);
 
     }
+
     else{
 
         console.log("MySQL Connected");
@@ -38,7 +48,7 @@ db.connect((err)=>{
 
 });
 
-/* Signup API */
+/* SIGNUP API */
 
 app.post("/signup",(req,res)=>{
 
@@ -47,31 +57,30 @@ app.post("/signup",(req,res)=>{
     const sql =
     "INSERT INTO users(name,email,password) VALUES(?,?,?)";
 
-    db.query(
-        sql,
-        [name,email,password],
-        (err,result)=>{
+    db.query(sql,[name,email,password],(err,result)=>{
 
-            if(err){
+        if(err){
 
-                console.log(err);
+            console.log(err);
 
-                res.send("Error");
-
-            }
-            else{
-
-                res.send("Signup Successful");
-
-            }
+            res.send("Error Saving Data");
 
         }
-    );
+
+        else{
+
+            res.send("Signup Successful");
+
+        }
+
+    });
 
 });
 
+/* SERVER */
+
 app.listen(5000,()=>{
 
-    console.log("Server Started");
+    console.log("Server Running On Port 5000");
 
 });
