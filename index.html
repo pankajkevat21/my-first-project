@@ -12,6 +12,7 @@
 
   <!-- GOOGLE FONT -->
  <!-- <link rel="icon" type="image/png" href="IMG_20260111_183154365.jpg"> -->
+
   <link rel="preconnect"
   href="https://fonts.googleapis.com">
 
@@ -34,21 +35,68 @@
       Pankaj✨
     </div>
 
-
     <ul class="nav-links">
 
       <li><a target="_blank" href="Cindex.html">C Language</a></li>
-      <li><a target="_blank"  href="https://www.w3schools.com/java/default.asp">Java</a></li>
-                 <li><a target="_blank" href="https://www.w3schools.com/html/default.asp">HTML</a></li>
-                 <li><a target="_blank" href="https://www.w3schools.com/css/default.asp">CSS</a></li>
-                 <li><a target="_blank" href="https://www.w3schools.com/python/default.asp">Python</a></li>
-                <li><a target="_blank" href="https://www.rgpv.ac.in/UC/frm_download_file.aspx?Filepath=CDN/PubContent/Scheme/II_Sem_Syllabus_MCA041120040849.pdf">Syllabus</a></li>
-               <li><a target="_blank" href="compiler.html">Compiler</a></li>
-                 <li><a target="_blank" href="https://www.linkedin.com/feed/">LinkedIn</a></li>
-                  
+
+      <li>
+        <a target="_blank"
+        href="https://www.w3schools.com/java/java_lambda.asp">
+          Java
+        </a>
+      </li>
+
+      <li>
+        <a target="_blank"
+        href="https://www.w3schools.com/html/default.asp">
+          HTML
+        </a>
+      </li>
+
+      <li>
+        <a target="_blank"
+        href="https://www.w3schools.com/css/default.asp">
+          CSS
+        </a>
+      </li>
+
+      <li>
+        <a target="_blank"
+        href="https://www.w3schools.com/python/default.asp">
+          Python
+        </a>
+      </li>
+
+      <li>
+        <a target="_blank"
+        href="https://www.rgpv.ac.in/UC/frm_download_file.aspx?Filepath=CDN/PubContent/Scheme/II_Sem_Syllabus_MCA041120040849.pdf">
+          Syllabus
+        </a>
+      </li>
+
+      <li>
+        <a target="_blank"
+        href="compiler.html">
+          Compiler
+        </a>
+      </li>
+
+      <li>
+        <a target="_blank"
+        href="https://www.linkedin.com/feed/">
+          LinkedIn
+        </a>
+      </li>
+
     </ul>
 
-  <a href="signup.html" class="btn">Sign In</a>
+    <!-- SIGN IN BUTTON -->
+
+    <a href="signup.html"
+    class="btn"
+    id="signinBtn">
+      Sign In
+    </a>
 
   </nav>
 
@@ -226,7 +274,7 @@
 
   <!-- ================= JAVASCRIPT ================= -->
 
- <script>
+  <script>
 
 const texts = [
 
@@ -276,7 +324,20 @@ function changeText(){
 
 setInterval(changeText,2500);
 
-</script>
-</body>
 
+/* CHECK LOGIN STATUS */
+
+const signinBtn =
+document.getElementById("signinBtn");
+
+const isLoggedIn =
+localStorage.getItem("loggedIn");
+
+if(isLoggedIn === "true"){
+  signinBtn.style.display = "none";
+}
+
+</script>
+
+</body>
 </html>
